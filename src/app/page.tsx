@@ -1,20 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Github, Instagram, ExternalLink } from 'lucide-react';
+import { InteractiveBackground } from '../components/InteractiveBackground';
 
 export default function Home() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   const allTechs = [
     { name: 'HTML5', slug: 'html5' },
     { name: 'CSS3', slug: 'css3' },
@@ -48,22 +39,19 @@ export default function Home() {
   return (
     <main className="min-h-screen md:h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-600/30 flex flex-col overflow-y-auto md:overflow-hidden relative">
       
-      {/* Fundo Reativo */}
-      <div 
-        className="pointer-events-none absolute inset-0 z-0 hidden md:block"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(37, 99, 235, 0.08), transparent 80%)`,
-        }}
-      />
+      {/* Fundo Interativo (Partículas + Linhas + Glow) */}
+      <InteractiveBackground />
 
       {/* Navbar */}
       <nav className="w-full px-6 md:px-12 py-6 flex justify-between items-center z-10 shrink-0">
-        <span className="text-white font-black tracking-tighter text-xl underline decoration-blue-600 decoration-4 italic">JHON</span>
+        <span className="text-white font-black tracking-tighter text-xl underline decoration-blue-600 decoration-4 italic">
+          JHON
+        </span>
         <div className="flex gap-4 md:gap-6">
-          <a href="https://github.com/iJhonN" target="_blank" className="text-white hover:text-blue-500 transition-colors">
+          <a href="https://github.com/iJhonN" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500 transition-colors">
             <Github size={20} />
           </a>
-          <a href="https://instagram.com/Jhonatha_Nunes" target="_blank" className="text-white hover:text-blue-500 transition-colors">
+          <a href="https://instagram.com/Jhonatha_Nunes" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-500 transition-colors">
             <Instagram size={20} />
           </a>
         </div>
@@ -92,7 +80,8 @@ export default function Home() {
               Software Developer & Designer
             </h2>
             <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-none">
-              Jhonatha <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Nunes</span>
+              Jhonatha <br className="hidden md:block" /> 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400"> Nunes</span>
             </h1>
             <p className="text-sm md:text-base text-slate-400 max-w-lg leading-relaxed mx-auto lg:mx-0">
               Foco em <span className="text-white">automação e eficiência.</span> Unindo programação e design para experiências intuitivas.
@@ -103,6 +92,7 @@ export default function Home() {
             <a 
               href="https://github.com/iJhonN?tab=repositories" 
               target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]"
             >
               Ver Projetos <ExternalLink size={14} />
