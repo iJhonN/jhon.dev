@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Github, Instagram, ExternalLink } from 'lucide-react';
-import { InteractiveBackground } from '../components/InteractiveBackground';
+import { InteractiveBackground } from './components/InteractiveBackground';
 
 export default function Home() {
   const allTechs = [
@@ -39,7 +39,6 @@ export default function Home() {
   return (
     <main className="min-h-screen md:h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-600/30 flex flex-col overflow-y-auto md:overflow-hidden relative">
       
-      {/* Fundo Interativo (Partículas + Linhas + Glow) */}
       <InteractiveBackground />
 
       {/* Navbar */}
@@ -75,16 +74,20 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             <h2 className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase font-black">
-              Software Developer & Designer
+              Full Stack Developer & Creative Designer
             </h2>
-            <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-none">
-              Jhonatha <br className="hidden md:block" /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400"> Nunes</span>
+            {/* Nome diminuído de 6xl para 5xl e espaçamento ajustado */}
+            <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase leading-tight">
+              Jhonatha <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Nunes</span>
             </h1>
-            <p className="text-sm md:text-base text-slate-400 max-w-lg leading-relaxed mx-auto lg:mx-0">
-              Foco em <span className="text-white">automação e eficiência.</span> Unindo programação e design para experiências intuitivas.
+            
+            {/* Descrição Refinada englobando a Stack técnica */}
+            <p className="text-sm md:text-[15px] text-slate-400 max-w-lg leading-relaxed mx-auto lg:mx-0">
+              Especialista em transformar lógica complexa em interfaces de alto impacto. 
+              Do <span className="text-white italic">back-end</span> robusto com <span className="text-white">Java e Python</span> à agilidade do <span className="text-white">Ecosistema React</span>. 
+              Arquitetando soluções escaláveis em <span className="text-white">Cloud (AWS/GCP)</span> com o refinamento visual do design premium.
             </p>
           </div>
 
@@ -95,7 +98,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all hover:shadow-[0_0_30px_rgba(37,99,235,0.4)]"
             >
-              Ver Projetos <ExternalLink size={14} />
+              Explorar Ecossistema <ExternalLink size={14} />
             </a>
           </div>
         </div>
@@ -105,14 +108,17 @@ export default function Home() {
           <div>
             <h3 className="text-white font-bold text-[9px] tracking-[0.3em] uppercase mb-6 flex items-center justify-center lg:justify-start gap-3">
               <span className="w-6 h-[1.5px] bg-blue-600"></span>
-              Linguagens
+              Core Stack & Languages
             </h3>
             <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-6">
               {allTechs.map((tech) => (
-                <div key={tech.name} className="flex justify-center group">
+                <div key={tech.name} className="flex justify-center group relative">
+                  <span className="absolute -top-8 scale-0 group-hover:scale-100 transition-all bg-blue-600 text-white text-[8px] px-2 py-1 rounded font-bold uppercase z-20">
+                    {tech.name}
+                  </span>
                   <img 
                     src={`https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${tech.slug}/${tech.slug}-original.svg`} 
-                    className="w-8 h-8 md:w-9 md:h-9 group-hover:scale-125 transition-all duration-300"
+                    className="w-8 h-8 md:w-9 md:h-9 group-hover:scale-125 transition-all duration-300 group-hover:drop-shadow-[0_0_10px_rgba(37,99,235,0.5)]"
                     alt={tech.name}
                   />
                 </div>
@@ -123,14 +129,14 @@ export default function Home() {
           <div className="pt-6 border-t border-white/5">
             <h3 className="text-white font-bold text-[8px] tracking-[0.3em] uppercase mb-5 flex items-center justify-center lg:justify-start gap-3">
               <span className="w-6 h-[1.5px] bg-cyan-500"></span>
-              Sistemas & Creative
+              Cloud, OS & Creative Tools
             </h3>
             <div className="flex flex-wrap justify-center lg:justify-start gap-5">
               {toolsAndOS.map((item) => (
                 <img 
                   key={item.name}
                   src={item.url ? item.url : `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item.slug}/${item.slug}-original.svg`} 
-                  className="w-6 h-6 md:w-7 md:h-7 opacity-60 hover:opacity-100 transition-all duration-300"
+                  className="w-6 h-6 md:w-7 md:h-7 opacity-50 hover:opacity-100 hover:scale-110 transition-all duration-300"
                   alt={item.name}
                 />
               ))}
@@ -141,7 +147,7 @@ export default function Home() {
 
       <footer className="w-full px-6 md:px-12 py-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[8px] font-bold text-slate-700 tracking-[0.4em] uppercase shrink-0 z-10 bg-[#050505]">
         <p>© 2026 — Jhon.dev</p>
-        <p className="text-blue-500">Clareza & Eficiência</p>
+        <p className="text-blue-500">Clareza & Eficiência Técnica</p>
       </footer>
     </main>
   );
