@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { Github, Instagram, ExternalLink } from 'lucide-react';
 
 export default function Home() {
-  // Estado para armazenar as coordenadas do mouse
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -47,38 +46,37 @@ export default function Home() {
   ];
 
   return (
-    <main className="h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-600/30 flex flex-col overflow-hidden relative">
+    <main className="min-h-screen md:h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-600/30 flex flex-col overflow-y-auto md:overflow-hidden relative">
       
-      {/* FUNDO REATIVO: O Glow segue o mouse */}
+      {/* Fundo Reativo */}
       <div 
-        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 z-0 hidden md:block"
         style={{
           background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(37, 99, 235, 0.08), transparent 80%)`,
         }}
       />
 
       {/* Navbar */}
-      <nav className="w-full px-8 md:px-12 py-6 flex justify-between items-center z-10 shrink-0">
-        <span className="text-white font-black tracking-tighter text-xl underline decoration-blue-600 decoration-4">JHONATHA</span>
-        <div className="flex gap-6">
-          <a href="https://github.com/iJhonN" target="_blank" className="text-white hover:text-blue-500 transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em]">
-            <Github size={18} /> <span className="hidden md:block">Github</span>
+      <nav className="w-full px-6 md:px-12 py-6 flex justify-between items-center z-10 shrink-0">
+        <span className="text-white font-black tracking-tighter text-xl underline decoration-blue-600 decoration-4 italic">JHONATHA</span>
+        <div className="flex gap-4 md:gap-6">
+          <a href="https://github.com/iJhonN" target="_blank" className="text-white hover:text-blue-500 transition-colors">
+            <Github size={20} />
           </a>
-          <a href="https://instagram.com/Jhonatha_Nunes" target="_blank" className="text-white hover:text-blue-500 transition-colors flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em]">
-            <Instagram size={18} /> <span className="hidden md:block">Instagram</span>
+          <a href="https://instagram.com/Jhonatha_Nunes" target="_blank" className="text-white hover:text-blue-500 transition-colors">
+            <Instagram size={20} />
           </a>
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col lg:flex-row items-center px-8 md:px-12 gap-8 lg:gap-16 z-10 overflow-hidden pb-6">
+      <div className="flex-1 flex flex-col lg:flex-row items-center px-6 md:px-12 gap-10 lg:gap-16 z-10 pb-10">
         
         {/* LADO ESQUERDO: Perfil */}
-        <div className="flex-1 space-y-6 text-center lg:text-left">
+        <div className="flex-1 space-y-6 text-center lg:text-left pt-4">
           <div className="inline-block relative group">
-            <div className="absolute -inset-1 bg-blue-600 rounded-full blur opacity-20 group-hover:opacity-50 group-hover:blur-xl transition-all duration-500"></div>
-            
-            <div className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-slate-800 shadow-2xl transition-all duration-500 group-hover:border-blue-500 group-hover:scale-110">
+            <div className="absolute -inset-1 bg-blue-600 rounded-full blur opacity-20 group-hover:opacity-50 transition-all duration-500"></div>
+            <div className="relative w-32 h-32 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-slate-800 shadow-2xl transition-all duration-500 group-hover:border-blue-500 group-hover:scale-105">
               <Image 
                 src="/jhonprofile.png" 
                 alt="Jhonatha Nunes"
@@ -89,12 +87,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <h2 className="text-blue-500 font-mono text-[10px] tracking-[0.5em] uppercase font-black">
+          <div className="space-y-3">
+            <h2 className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase font-black">
               Software Developer & Designer
             </h2>
-            <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-tight">
-              Jhonatha <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Nunes</span>
+            <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-none">
+              Jhonatha <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Nunes</span>
             </h1>
             <p className="text-sm md:text-base text-slate-400 max-w-lg leading-relaxed mx-auto lg:mx-0">
               Foco em <span className="text-white">automação e eficiência.</span> Unindo programação e design para experiências intuitivas.
@@ -113,13 +111,13 @@ export default function Home() {
         </div>
 
         {/* LADO DIREITO: Techs */}
-        <div className="flex-1 w-full max-w-xl bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-[2rem] border border-white/10 space-y-8 self-center relative z-10">
+        <div className="w-full lg:flex-1 max-w-xl bg-white/5 backdrop-blur-md p-6 md:p-8 rounded-[2rem] border border-white/10 space-y-8">
           <div>
-            <h3 className="text-white font-bold text-[9px] tracking-[0.3em] uppercase mb-6 flex items-center gap-3">
+            <h3 className="text-white font-bold text-[9px] tracking-[0.3em] uppercase mb-6 flex items-center justify-center lg:justify-start gap-3">
               <span className="w-6 h-[1.5px] bg-blue-600"></span>
               Linguagens
             </h3>
-            <div className="grid grid-cols-5 md:grid-cols-7 gap-4">
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-6">
               {allTechs.map((tech) => (
                 <div key={tech.name} className="flex justify-center group">
                   <img 
@@ -133,26 +131,25 @@ export default function Home() {
           </div>
 
           <div className="pt-6 border-t border-white/5">
-            <h3 className="text-white font-bold text-[8px] tracking-[0.3em] uppercase mb-5 flex items-center gap-3">
+            <h3 className="text-white font-bold text-[8px] tracking-[0.3em] uppercase mb-5 flex items-center justify-center lg:justify-start gap-3">
               <span className="w-6 h-[1.5px] bg-cyan-500"></span>
               Sistemas & Creative
             </h3>
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-5">
               {toolsAndOS.map((item) => (
-                <div key={item.name} className="group">
-                  <img 
-                    src={item.url ? item.url : `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item.slug}/${item.slug}-original.svg`} 
-                    className="w-5 h-5 md:w-6 md:h-6 opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
-                    alt={item.name}
-                  />
-                </div>
+                <img 
+                  key={item.name}
+                  src={item.url ? item.url : `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${item.slug}/${item.slug}-original.svg`} 
+                  className="w-6 h-6 md:w-7 md:h-7 opacity-60 hover:opacity-100 transition-all duration-300"
+                  alt={item.name}
+                />
               ))}
             </div>
           </div>
         </div>
       </div>
 
-      <footer className="w-full px-12 py-6 border-t border-white/5 flex justify-between items-center text-[8px] font-bold text-slate-700 tracking-[0.4em] uppercase shrink-0 z-10">
+      <footer className="w-full px-6 md:px-12 py-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[8px] font-bold text-slate-700 tracking-[0.4em] uppercase shrink-0 z-10 bg-[#050505]">
         <p>© 2026 — Jhon.dev</p>
         <p className="text-blue-500">Clareza & Eficiência</p>
       </footer>
