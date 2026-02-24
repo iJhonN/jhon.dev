@@ -58,7 +58,7 @@ export default function Home() {
 
       {/* Navbar */}
       <nav className="w-full px-6 md:px-12 py-6 flex justify-between items-center z-10 shrink-0">
-        <span className="text-white font-black tracking-tighter text-xl underline decoration-blue-600 decoration-4 italic">JHONATHA</span>
+        <span className="text-white font-black tracking-tighter text-xl underline decoration-blue-600 decoration-4 italic">JHON</span>
         <div className="flex gap-4 md:gap-6">
           <a href="https://github.com/iJhonN" target="_blank" className="text-white hover:text-blue-500 transition-colors">
             <Github size={20} />
