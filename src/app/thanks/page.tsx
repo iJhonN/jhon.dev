@@ -7,16 +7,22 @@ import { InteractiveBackground } from '../components/InteractiveBackground';
 
 export default function Thanks() {
   const supporters = [
-    "Raymara Nunes", "Nayara Nunes", "Maria Clara Barbosa", 
-    "Valdemilson Nunes", "Maria Rita", "Angela Maria", 
-    "Ivonete", "José Arnaldo", "Thiago Bezerra", "Kauan Felinto",
-    "Antônio Balbino" // Nome do seu avô adicionado
+    "Raymara Nunes", 
+    "Nayara Nunes", 
+    "Maria Clara Barbosa", 
+    "Valdemilson Nunes", 
+    "Antônio Balbino",
+    "Maria Rita", 
+    "Angela Maria", 
+    "Ivonete", 
+    "José Arnaldo", 
+    "Thiago Bezerra", 
+    "Kauan Felinto"
   ];
 
   return (
     <main className="min-h-screen bg-[#050505] text-slate-300 font-sans relative overflow-x-hidden select-none">
       <InteractiveBackground />
-
       <nav className="w-full px-6 md:px-12 py-8 flex justify-between items-center z-10 relative">
         <Link href="/" className="flex items-center gap-2 text-white hover:text-blue-500 transition-all group">
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
@@ -38,14 +44,13 @@ export default function Thanks() {
           Nenhum ecossistema é construído sozinho. Estas são as pessoas que fortaleceram minha jornada, 
           incentivaram minha evolução técnica e acreditaram na minha visão.
         </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
           {supporters.map((name) => (
             <div 
               key={name}
-              className={`group relative p-6 rounded-2xl border transition-all duration-300 ${
+              className={`group relative p-6 rounded-2xl border transition-all duration-500 ${
                 name === "Antônio Balbino" 
-                ? "border-blue-500/40 bg-blue-600/5 shadow-[0_0_20px_rgba(37,99,235,0.1)]" 
+                ? "border-blue-500/40 bg-blue-600/10 shadow-[0_0_25px_rgba(37,99,235,0.15)] scale-105" 
                 : "border-white/5 bg-white/[0.02] hover:border-blue-600/50"
               } backdrop-blur-sm`}
             >
@@ -57,7 +62,6 @@ export default function Thanks() {
                 }`}>
                   {name}
                 </p>
-                {/* Ícone de Estrela Especial para o seu Avô */}
                 {name === "Antônio Balbino" && (
                   <Sparkles size={16} className="text-blue-400 animate-pulse" />
                 )}
