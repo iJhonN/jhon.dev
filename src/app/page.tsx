@@ -1,11 +1,34 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Github, Instagram, ExternalLink } from 'lucide-react';
 import { InteractiveBackground } from './components/InteractiveBackground';
 
 export default function Home() {
+  const router = useRouter();
+  const [clickCount, setClickCount] = useState(0);
+  const lastClickTime = useRef(0);
+
+  // Lógica do Easter Egg: 5 cliques rápidos
+  const handleEasterEgg = () => {
+    const now = Date.now();
+    // Se o clique demorar mais de 500ms, reseta a contagem
+    if (now - lastClickTime.current > 500) {
+      setClickCount(1);
+    } else {
+      const newCount = clickCount + 1;
+      setClickCount(newCount);
+      
+      if (newCount === 5) {
+        // Redireciona para a página secreta
+        router.push('/thanks');
+      }
+    }
+    lastClickTime.current = now;
+  };
+
   const allTechs = [
     { name: 'HTML5', slug: 'html5' },
     { name: 'CSS3', slug: 'css3' },
@@ -37,7 +60,10 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen md:h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-600/30 flex flex-col overflow-y-auto md:overflow-hidden relative">
+    <main 
+      onClick={handleEasterEgg}
+      className="min-h-screen md:h-screen bg-[#050505] text-slate-300 font-sans selection:bg-blue-600/30 flex flex-col overflow-y-auto md:overflow-hidden relative cursor-default"
+    >
       
       <InteractiveBackground />
 
@@ -78,15 +104,13 @@ export default function Home() {
             <h2 className="text-blue-500 font-mono text-[10px] tracking-[0.4em] uppercase font-black">
               Full Stack Developer & Creative Designer
             </h2>
-            {/* Nome diminuído de 6xl para 5xl e espaçamento ajustado */}
             <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase leading-tight">
               Jhonatha <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Nunes</span>
             </h1>
             
-            {/* Descrição Refinada englobando a Stack técnica */}
             <p className="text-sm md:text-[15px] text-slate-400 max-w-lg leading-relaxed mx-auto lg:mx-0">
               Especialista em transformar lógica complexa em interfaces de alto impacto. 
-              Do <span className="text-white italic">back-end</span> robusto com <span className="text-white">Java e Python</span> à agilidade do <span className="text-white">Ecosistema React</span>. 
+              Do <span className="text-white italic">back-end</span> robusto com <span className="text-white">Java e Python</span> à agilidade do <span className="text-white">Ecossistema React</span>. 
               Arquitetando soluções escaláveis em <span className="text-white">Cloud (AWS/GCP)</span> com o refinamento visual do design premium.
             </p>
           </div>
