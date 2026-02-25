@@ -9,7 +9,8 @@ export default function Thanks() {
   const supporters = [
     "Raymara Nunes", 
     "Nayara Nunes", 
-    "Maria Clara Barbosa", 
+    "Maria Clara Barbosa",
+    "Marley",
     "Valdemilson Nunes", 
     "Antônio Balbino",
     "Maria Rita", 
