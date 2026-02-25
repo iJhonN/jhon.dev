@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Github, Instagram, ExternalLink } from 'lucide-react';
+import { Github, Instagram, ExternalLink, Heart } from 'lucide-react'; // Adicionado Heart
 import { InteractiveBackground } from './components/InteractiveBackground';
 
 export default function Home() {
@@ -12,9 +12,7 @@ export default function Home() {
   const [isRedirecting, setIsRedirecting] = useState(false);
   const lastClickTime = useRef(0);
 
-  // Lógica do Easter Egg: 5 cliques rápidos + Animação
   const handleEasterEgg = (e: React.MouseEvent) => {
-    // Evita disparar se clicar em botões ou links
     if ((e.target as HTMLElement).tagName === 'A' || (e.target as HTMLElement).tagName === 'BUTTON') return;
 
     const now = Date.now();
@@ -28,7 +26,7 @@ export default function Home() {
         setIsRedirecting(true);
         setTimeout(() => {
           router.push('/thanks');
-        }, 800);
+        }, 1200); // Aumentei um pouco para a animação do coração brilhar
       }
     }
     lastClickTime.current = now;
@@ -61,15 +59,19 @@ export default function Home() {
   return (
     <main 
       onClick={handleEasterEgg}
-      className={`min-h-screen md:h-screen bg-[#050505] text-slate-300 font-sans flex flex-col overflow-y-auto md:overflow-hidden relative cursor-default select-none transition-all duration-700 ${isRedirecting ? 'scale-110 blur-sm' : 'scale-100 blur-0'}`}
+      className={`min-h-screen md:h-screen bg-[#050505] text-slate-300 font-sans flex flex-col overflow-y-auto md:overflow-hidden relative cursor-default select-none transition-all duration-700 ${isRedirecting ? 'scale-110 blur-md' : 'scale-100 blur-0'}`}
     >
       
-      {/* Overlay de Animação de Flash/Glitch */}
+      {/* Overlay do Easter Egg com Coração Animado */}
       {isRedirecting && (
-        <div className="fixed inset-0 z-[100] bg-blue-600/20 animate-pulse flex items-center justify-center backdrop-blur-md">
-           <div className="text-blue-500 font-black tracking-[1em] uppercase animate-bounce text-xs">
-              Acessando Base de Dados...
-           </div>
+        <div className="fixed inset-0 z-[100] bg-[#050505]/80 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-500">
+          <div className="relative">
+            <Heart size={80} className="text-blue-600 fill-blue-600/20 animate-ping absolute inset-0" />
+            <Heart size={80} className="text-blue-500 fill-blue-500 animate-pulse relative z-10" />
+          </div>
+          <div className="mt-8 text-blue-500 font-black tracking-[0.6em] uppercase text-[10px] animate-pulse">
+            Acessando Memória de Gratidão...
+          </div>
         </div>
       )}
 
